@@ -1,10 +1,12 @@
-# paper_notes
-论文要点笔记，初期可能就只是翻译，而且翻译的还是不通畅，到后来可能会慢慢的改的精要。
+# 论文笔记
+论文要点笔记，想要把一些经典的或者前言的论文进行精读或者略读。但是个人力量和水平有限，所以在初期可能就只是翻译，而且翻译的还是不通畅，到后来可能会慢慢的改的精要。会KEEP UPDATING!
+
+
 
 # 论文
 
 - [ ] A Neural Attention Model for Sentence Summarization.pdf
-- [ ] ATTENTION.pdf
+- [ ] ATTENTION IS ALL YOU NEED.pdf
 - [ ] character-level-convolutional-networks-for-text-classification.pdf
 - [ ] Convolutional Neural Networks for Sentence Classification.pdf
 - [ ] Convolutional Sequence to Sequence Learning.pdf
@@ -16,9 +18,7 @@
 - [ ] latex_short-cn.pdf
 - [ ] LearningCharacter-levelRepresentationsforPart-of-SpeechTagging.pdf
 - [ ] NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE.pdf
-- [ ] NEURAL MACHINE TRANSLATION.pdf
 - [ ] Nural machine translation by jointly learning to align and transelate.pdf
-- [ ] paper_name.md
 - [ ] snorkel.pdf
 - [ ] Text Understanding from Scratch.pdf
 - [ ] XiangRen_ClusType_Effective Entity Recognition and Typing by.pdf

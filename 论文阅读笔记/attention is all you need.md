@@ -1,8 +1,10 @@
-# abstract
+# 0.TIPS
+Multi-Head Attention之前有人做过，就是将输入映射到不同的空间，再分别做attention。(https://www.zhihu.com/question/61077555)
+# 1.Abstract
 
 主流的序列翻译方法是基于复杂的循环或者卷积神经网络做，其内部包含编码与解码。最好的模型也是通过一个attention的mechanism来连接编码机与解码机的。我们提出了一个新的网络结构，**Transformer** 单单基于注意力机制，完全与循环和卷积神经网络无关。基于两个机器翻译任务的实验显示这些模型在质量上更好，同时表现更好的并行性和更少的训练时间。task:**WMT 2014 English-to-German** 和 **WMT 2014 English-to-French** 翻译任务(3.5天在8个GPU)。优点是适用性强，大小数据均可。
 
-# introduction
+# 2.Introduction
 
 循环神经网络:LSTM和门循环神经网络在序列模型和转换任务上例如语言模型和机器翻译上已经达到了最好的效果。巨大的努力还在推进循环语言模型和编码解码结构的上限
 
@@ -12,13 +14,13 @@ attention mechanisms已经变成了在不同的任务中令人注目的序列建
 
 在这份工作中我们提出了transformer，一个避免使用循环并且完全依赖于attention mechanism的模型结构以得到在输入和输出之间的全局依赖。transformer允许更加显著的并行并且能够实现最好的翻译质量，在8个GPU上训练12个小时。
 
-# background
+# 3.Background
 
 降低序列的计算消耗也是Extended Neural GPU的基础工作，ByteNet和ConvS2S,都使用卷积神经网络作为基础模块，并行计算输入和输出位置的隐含层表达。在这些模型中，连接两个输入或者输出位置的属性的信息所需要的操作数量会随着位置的距离而变化,对于ConvS2S是线性的，对于ByteNet是log的。这就使得距离位置的依赖学习变得困难。在transformer中这个操作数量被减少到一个固定的常数，虽然是以 effective resolution的降低为代价，因为平均了注意力权值的位置，这是在3.2节中我们用multi-head attention来抵消这个影响。
 
 自注意力，有时被称为intra-attention，是一个注意力机制用来连接一个序列的不同位置，以便去计算序列的representation。自注意力一直在包括阅读理解，抽象总结，textual entrailment和学习任务无关的句子表达中取得非常好的效果。
 
-# Encoder and Decoder Stacks
+## 3.1Encoder and Decoder Stacks
 
 - Encoder:encoder由一个N=6的相同的层堆叠而成。每层都有两个子层，第一层是一个multi-hear的自注意机制，第二层是一个简单的按位置的全连接前向网络。我们使用了一个残差连接(residual connenction)在每两个子层，跟随着layer normalization。那就是说，每个子层的输出是LayerNorm(x+Sublayer(x)),其中Sublayer(x)是一个被子层使用的函数。为了方便这些残差连接，所有在模型中的子层，就跟embedding层一样，产生输出维度 dmodel = 512
 - Decoder:Decoder由一个N=6的相同的层堆叠而成。除了每层的encoder layer两层子层之外，decoder插入了第三个子层，这一层会在encoder stack的输出上perform一个multi-head attention。同编码层相同，我们使用残差连接在每两个子层中，跟随着layer normalization.我们也**修改了** 在decoder stack中的自注意子层以便去prevent positions from attending to subsequent positions 。这个masking，是与输出的embedding通常会偏移一个位置的事实相结合，确保对于位置i的预测仅依赖于已知的小于i的位置
