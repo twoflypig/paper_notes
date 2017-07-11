@@ -6,8 +6,8 @@
 # 论文
 
 - [ ] A Neural Attention Model for Sentence Summarization.pdf
-- [ ] ATTENTION IS ALL YOU NEED.pdf
-- [ ] character-level-convolutional-networks-for-text-classification.pdf
+- [x] ATTENTION IS ALL YOU NEED.pdf
+- [x] character-level-convolutional-networks-for-text-classification.pdf
 - [ ] Convolutional Neural Networks for Sentence Classification.pdf
 - [ ] Convolutional Sequence to Sequence Learning.pdf
 - [ ] Data Programming.pdf
@@ -20,6 +20,11 @@
 - [ ] NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE.pdf
 - [ ] Nural machine translation by jointly learning to align and transelate.pdf
 - [ ] snorkel.pdf
-- [ ] Text Understanding from Scratch.pdf
-- [ ] XiangRen_ClusType_Effective Entity Recognition and Typing by.pdf
-- [ ] XiangRen-Turning Massive Text Corpora into Structures-Talk-At-ZJU.pdf
+- [x] Text Understanding from Scratch.pdf
+- [x] XiangRen_ClusType_Effective Entity Recognition and Typing by.pdf
+- [x] XiangRen-Turning Massive Text Corpora into Structures-Talk-At-ZJU.pdf
+
+# 小目标
+
+- 找一个能用在Gym上，能自己修改的代码
+- 还有就是attention,Con2S
