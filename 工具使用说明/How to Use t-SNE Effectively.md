@@ -32,3 +32,30 @@ t-SNE第二个特点就是一个可调的参数,perlexity,是用来平衡局部�
 
 # 2.Cluster sizes in a t-SNE plot mean nothing
 
+不同大小不同分布的两个类的情况。
+
+(图三)
+
+表现的结果为，在t-SNE的结果中两个类都是相同的大小(初始是蓝色稀疏，黄色稠密).  **t-SNE采用距离的记号去表示在数据集中的局部稠密的分布** 。因此，与稀疏的数据相比，它会自然的拓展稠密的类，evening out (平衡)类的尺寸。确切的说，这和普通的事实不同，这个事实是任何维度的降维都会导致距离的扭曲。相反的，**密度均衡** 就是t-SNE的一个设计和特性。
+
+# 3.类之间的距离可能是无意义的
+
+# 4.随机的噪声看起来并不总是随机的
+
+低的参数值(perplex)通常会使得图像呈现一段段线条，但是在本例子中缺是一个随机值！因为高纬度的数据是平坦分布的！
+
+# 5.你有时的确会看到一些形状
+
+低参数值情况下，会出现一些聚集的现象。
+
+在两条长长的类时，结果也是同样类似的长条，但是直线会变成一点点弯曲。是因为t-SNE会尝试去拓宽稠密的数据区域
+
+The reason is that, as usual, t-SNE tends to expand denser regions of data. Since the middles of the clusters have less empty space around them than the ends, the algorithm magnifies them.
+
+# 6.For topology, you may need more than one plot
+
+有时你可能需要从t-SNE的图中读取拓扑信心，你需要多用几个参数才能看出来
+
+# 7 conclusion
+
+最后结果的几个图很有意思！
