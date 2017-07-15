@@ -70,3 +70,27 @@ pass
 我们把我们的结果和RL算法中的最好的模型进行了比较。
 
 在固定贪婪率为0.05的步骤时的平均分数作为比较(意思就是说贪婪率设置为0.05，即最好的状态进行最终结果的对比)。
+
+# My Test Project
+
+注意迭代更新的在代码上是这样的
+
+在target net 中,也就是训练的动作的目标Q值。这个目标值得定义就是当前的reward+下一个状态s_对应的最大Q值(为什么是这个呢，因为在下一个s_状态时，如果我们知道了所有要采取的action的对应的Q值，那么最优的方法就是选择一个action区最大化预计值，所以选择了Qmax) * 一个衰减系数
+
+```python
+q_target = self.r + self.gamma * tf.reduce_max(self.q_next, axis=1, name='Qmax_s_')  
+```
+
+在估计出来的网络中
+
+```
+a_one_hot = tf.one_hot(self.a, depth=self.n_actions, dtype=tf.float32)
+self.q_eval_wrt_a = tf.reduce_sum(self.q_eval * a_one_hot, axis=1)  # shape=(None, )
+```
+
+定义的loss
+
+```python
+self.loss=tf.reduce_mean(tf.squared_difference(self.q_target,self.q_eval_wrt_a,name='TD_error'))
+```
+
