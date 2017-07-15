@@ -10,21 +10,15 @@
 - [x] character-level-convolutional-networks-for-text-classification.pdf
 - [ ] Convolutional Neural Networks for Sentence Classification.pdf
 - [ ] Convolutional Sequence to Sequence Learning.pdf
-- [ ] Data Programming.pdf
 - [ ] Deep Learning for Character-based Information Extraction_2014_ecir2014_full.pdf
-- [ ] Entity Attribute Extraction from Unstructured Text with.pdf
-- [ ] Fonduer_Knowledge Base Construction from Richly.pdf
-- [ ] Gradient-Based Learning Applied to Document Recognition.pdf
-- [ ] latex_short-cn.pdf
 - [ ] LearningCharacter-levelRepresentationsforPart-of-SpeechTagging.pdf
 - [ ] NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE.pdf
 - [ ] Nural machine translation by jointly learning to align and transelate.pdf
-- [ ] snorkel.pdf
-- [x] Text Understanding from Scratch.pdf
-- [x] XiangRen_ClusType_Effective Entity Recognition and Typing by.pdf
-- [x] XiangRen-Turning Massive Text Corpora into Structures-Talk-At-ZJU.pdf
+- [x] Playing Atari with Deep Reinforcement Learning
+- [ ] human-level control through deep reinforcement learning
 
 # 小目标
 
-- 找一个能用在Gym上，能自己修改的代码
-- 还有就是attention,Con2S
+- [x] 找一个能用在Gym上，能自己修改的代码.
+- [ ] 还有就是attention,Con2S
+
