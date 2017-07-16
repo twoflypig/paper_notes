@@ -73,9 +73,11 @@ pass
 
 # My Test Project
 
-注意迭代更新的在代码上是这样的
+注意迭代更新的在代码上是这样的。
 
 在target net 中,也就是训练的动作的目标Q值。这个目标值得定义就是当前的reward+下一个状态s_对应的最大Q值(为什么是这个呢，因为在下一个s_状态时，如果我们知道了所有要采取的action的对应的Q值，那么最优的方法就是选择一个action区最大化预计值，所以选择了Qmax) * 一个衰减系数
+
+目标的的函数是老的，估计的是最新的
 
 ```python
 q_target = self.r + self.gamma * tf.reduce_max(self.q_next, axis=1, name='Qmax_s_')  
