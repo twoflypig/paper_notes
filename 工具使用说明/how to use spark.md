@@ -58,3 +58,7 @@ Exit the Scala shell.
 ```scala
 exit
 ```
+# 一些常用的函数
+spark 2.1.0的写法: df.select($"name", $"age" + 1).show()  
+spark 1.6.0的写法:df.select(df("name"),df("age")+1).show() 
+$"yaer"好像是string的意思

@@ -12,3 +12,19 @@
 
 我们的Double-DQN改善了结果，这就证明了高估的确会产生坏影响
 
+# Background
+
+为了解决序列决策问题我们能够学习对每个行为的最优值的估计，这个估计被定义为当我们采用那个行为并且此后保持着最优的策略时，未来回报的期望和。给定策略 $\pi$ ,在状态s中行为a的真实值为  (公式，意思就是此后的带有衰减的reward之和的期望)。最优的值就是在(在s,a下最大的Q值)。一个最优的策略很容易通过在每个状态选择最大的值来得到。
+
+讲了下标准的Q-learning的参数更新，跟DQN差不多
+
+# Deep Q Networks
+
+介绍了DQN中的两个思想:target network和experience replay
+
+# Double Q-learing
+
+在标准Q-learing和DQN中对值取最大值的做法，会使得高估的可能性增大，就会产生过于乐观的值估计。**为了解决这个问题，我们decouple the selcetion from the evaluation** (对评估中的选择进行解耦合？)
+
+在原始DQN中，两个值函数是通过assign each experinece randomly来更新两个值函数中的一个，这样就会有两个权值的集和，$\theta$ 和 $\theta^-$ 。对于每次更新，权值中的一个集合被用来去决定贪婪的策略并且另一个去决定策略背后的值。为了让对比明显，文中给出了DQN和doubleDQN的目标数学表达(balabala,不太理解这个区别)。注意到在argmax中行为的选择还是根据在线权值$\theta_i$ 。这就意味在Q-learning中，我们还是根据当前的值，定义为 $\theta_t$来估计贪婪策略的值。然而我们使用 $\theta$ ‘ 来公平的评估这个策略的值。第二个权值的集合能够被同步的更新通过switch两个$\theta$的角色(就是说再参加一个参数来评估好坏？)
+
