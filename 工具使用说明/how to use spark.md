@@ -62,3 +62,9 @@ exit
 spark 2.1.0的写法: df.select($"name", $"age" + 1).show()  
 spark 1.6.0的写法:df.select(df("name"),df("age")+1).show() 
 $"yaer"好像是string的意思
+
+# RDD
+
+RDD，全称为Resilient Distributed Datasets，是一个容错的、并行的数据结构，可以让用户显式地将数据存储到磁盘和内存中，并能控制数据的分区。
+
+所以说，RDD是spark所特有的结构
