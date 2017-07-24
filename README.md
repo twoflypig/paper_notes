@@ -6,31 +6,26 @@
 # 论文
 
 - [ ] A Neural Attention Model for Sentence Summarization.pdf
-
 - [x] ATTENTION IS ALL YOU NEED.pdf
-
 - [x] character-level-convolutional-networks-for-text-classification.pdf
-
 - [ ] Convolutional Neural Networks for Sentence Classification.pdf
-
 - [ ] Convolutional Sequence to Sequence Learning.pdf
-
 - [ ] Deep Learning for Character-based Information Extraction_2014_ecir2014_full.pdf
-
 - [ ] LearningCharacter-levelRepresentationsforPart-of-SpeechTagging.pdf
-
 - [ ] NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE.pdf
-
 - [ ] Nural machine translation by jointly learning to align and transelate.pdf
-
 - [x] Playing Atari with Deep Reinforcement Learning
-
 - [ ] human-level control through deep reinforcement learning
-
 - [ ] Deep Reinforcement Learning with Double Q-learning
+
+# Blog
+
+- [ ] 介绍了一下attention .   https://distill.pub/2016/augmented-rnns/ 
+- [x] 介绍了LSTM http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
 # 小目标
 
 - [x] 找一个能用在Gym上，能自己修改的代码.
 - [ ] 还有就是attention,Con2S
+- [ ] RNN google的toturial
 
