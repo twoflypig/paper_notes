@@ -2,6 +2,18 @@
 
 来自博文: http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
+# Some base knowledge about RNN
+
+$x_t$ 表示第几步的(step)的输入。如果有28个timestep，那么unfold后就会有28个节点。本节点还有一个$o_t$ 的输出，是隐藏层的输出，最后输出层的输出才可以作为两层LSTM的输入x(博客中是这样理解的),可以认为$S_t$是网络的记忆单元。
+
+如何训练RNNs,同普通的训练过程相同，只不过隐藏层的计算多加了一点。
+
+
+
+训练过程:[中文翻译](http://nooverfit.com/wp/%E6%AF%8F%E4%B8%AA%E4%BA%BA%E9%83%BD%E8%83%BD%E5%BE%92%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAlstm-rnn%E9%80%92%E5%BD%92%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/) 此链接翻译自  [原文出处](https://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/)
+
+
+
 # Recurrent Neural Networks
 
 讲了一下直觉，人们对于文章的理解不是从零开始的，而是依赖于之前的信息。我们的想法具有persistence
