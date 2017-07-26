@@ -15,6 +15,22 @@
 ④ Policy Network 融合①，②，③中得到的vector，得到新的vector，表示当前状态 
 ⑤ Generation Network 用seq2seq的方法，根据④得到的vector 生成整句话，然后用③中pointer所指向的db中的那个entity替换句中的一些项。
 
+[需要的前置知识](https://mi.eng.cam.ac.uk/~nm480/presentation-nbt.pdf)
+
+Beliefs:a probability distribution over the available slot values (the belief state)for each slot in the ontology
+
+置信度:在某个领域集和内各种属性对的概率分布
+
+delexicalisation:意思是在一个表达中所有属性名或者属性值会被替换为generic tags例如
+
+> I want Chinese food 
+>
+> I want cheap price range
+>
+> = I want VALUE SLOT
+
+**domain ontology**：类似知识图谱里的本体，定义了要填的槽和可能取值的集合；
+
 # Abstract
 
 通过和人类进行自然的谈话来教导机器去完成任务是很难的。目前，开发任务导向的对话系统要求创建多个元件并且这样会包含一大堆人的工作，或者要求昂贵的标记的数据来解决对于每个component的统计学习问题。本文提出了一个基于神经网络的 text in text out和end to end的可训练的目标导向的对话系统，以基于一个新的流水线的Wizard-of-Oz框架。这就使得我们能够简单的开发对话系统并且不需要太多的假设。结果显示模型能够和受试人自然的谈话同时帮助受试人在**饭店搜索**领域完成任务。
@@ -40,6 +56,8 @@
 图2
 
 ## 2.2Belief Trackers
+
+**解释一下belief state是啥，**
 
 Belief tracking(也叫作对话状态跟踪)是系统的核心。当前的belief trackers使用例如RNN这样的离散模型来直接映射ASR假设到belief states(to directly map ASR hypotheses to belief states).仍然使用belief tracking 作为系统核心的原因:
 
