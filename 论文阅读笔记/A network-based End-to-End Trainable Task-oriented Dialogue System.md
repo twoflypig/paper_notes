@@ -9,8 +9,7 @@
 任务：找餐馆 
 数据：众标，标了680轮对话，共1500个turns，都是人工写的。db中有99家餐厅，可根据 口味/地点/价格（这三个叫informable slot） 查询餐厅， 选定餐厅后可查询 电话、邮编等其他6项（这6个叫requestable slot）信息。 
 模型： 
-① Intent network 根据source query得到user intent vector; 
-② Belief Tracker 得到每个 informable slot的多元概率分布，和每个requestable slot的二项分布。用于在db中检索。 
+① Intent network 根  informable slot的多元概率分布，和每个requestable slot的二项分布。用于在db中检索。 
 ③ Database Operator 数据库中根据 informable slot项检索， 返回一个vector，符合的entry记为1，其他为0，entity指针指向vector label为1中的一个餐厅（这个pointer到Generation Network中用到）。 
 ④ Policy Network 融合①，②，③中得到的vector，得到新的vector，表示当前状态 
 ⑤ Generation Network 用seq2seq的方法，根据④得到的vector 生成整句话，然后用③中pointer所指向的db中的那个entity替换句中的一些项。
@@ -57,7 +56,7 @@ delexicalisation:意思是在一个表达中所有属性名或者属性值会被
 
 这个模块可以看成是一个S2S学习框架中的编码器，任务是去对输入的tokens编码到一个distributed vectio representation $z_t$在每个回合$t$ 时，典型的，使用LSTM并且最后的time step时的隐藏层输出$Z_t^N$ 最为表达，另外一种选择就是，使用CNN来代替LSTM作为编码器。因为特定的信息的属性值是delexicalised，编码向量能够被视为一个distributed intent  represention,这个编码替换了手工编码的对话行为表达(这个网络的作用就是当做编码器)
 
-图2
+![tu](../photo/dialogueSystem/dialogue4.png)
 
 ## 2.2Belief Trackers
 
@@ -70,15 +69,15 @@ Belief tracking(也叫作对话状态跟踪)是系统的核心。当前的belief
 3. uses a smart weight tring strategy that can greatly reduce the data required to train the model
 4. it provides an inherent robustness which simplifies future extension to spoken systems 
 
-belief tracker的任务就是获得针对每个informable属性(informable slots:用户用来去限制搜索，例如食物的类型或者价格范围,requestable slots:用户要求获得一个值)的不同值的概率(就是说要该类别的那个值)，和每个requestable slot的binary 分布。在ontology图中的每个属性有自己的tracker，每个tracker是 Jordan类型的带有一个CNN的特征抽取的RNN(作用就是获得属性的值的概率分布？？？).我们将每个值v绑定RNN权重，但是在更新每个pre-softmax激活g时会改变特征f。对于输入的属性s，更新的等式如下所示
+belief tracker的任务就是获得针对每个informable属性的不同值的概率(就是说要该类别的那个值)，和每个requestable slot的binary 分布。在ontology图中的每个属性有自己的tracker，每个tracker是 Jordan类型的带有一个CNN的特征抽取的RNN(作用就是获得属性的值的概率分布？？？).我们将每个值v绑定RNN权重，但是在更新每个pre-softmax激活g时会改变特征f。对于输入的属性s，更新的等式如下所示
 
 ![tu](../photo/dialogueSystem/dialogue2.png)
 
-$f_{v,cnn}^t$是两个CNN抽取的特征的拼接，一个来自t轮用户的输入另一个来自机器在t-1轮的反应$m_{t-1}$
+如下图2所示，$f_{v,cnn}^t$是两个CNN抽取的特征的拼接，一个来自t轮用户的输入另一个来自机器在t-1轮的反应$m_{t-1}$
 
 ![tu](../photo/dialogueSystem/dialogue3.png)
 
-
+(TODO:为啥用n-gram?不懂)
 
 为了当delexicalisation应用于slot或者value时，使得tracker能够aware到，这个CNN操作不仅抽取顶层的句子表达，而且也会intermediate n-gram-like embeddings determined by the position of the delexicalised token in each utterance ，如果有很多matches，对应的embedding会加起来。另一方面，如果对于一个特定的slot或者value没有match，那么空的n-gram-like的embeddings会被设为0.为了跟踪delexicalised tokens的位置，在每次卷积操作前句子的两端都会被填为0，向量的数量由每层的filter决定。详情见图2
 

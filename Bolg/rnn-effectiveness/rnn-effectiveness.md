@@ -54,7 +54,7 @@ class RNN:
 
 用随机值初始化RNN的矩阵，在训练过程中都是寻找产生期望行为的矩阵，使用一个损失函数来表示更期望哪一种输出y，对应输入的序列x
 
-### Going deep 
+### Going deep  
 
 RNNs are neural networks and everything works monotonically better (if done right) if you put on your deep learning hat and start stacking models up like pancakes. For instance, we can form a 2-layer recurrent network as follows:(意思是说加入更多的deep learing东西会效果好)
 
