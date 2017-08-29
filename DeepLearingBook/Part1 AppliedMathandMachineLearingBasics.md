@@ -44,6 +44,18 @@ Bayesian probability and frequentist probability
 
 # 3.9 Common Probability Distributions
 
+## 3.9.6 Mixtures of Distributions
+
+**Latent variables**
+
+![6](6.PNG)
+
+![7](7.PNG)
+
+# 3.12 Technical Details of Continuous Variables
+
+
+
 
 
 

@@ -25,6 +25,7 @@
 # Blog
 
 - [x] 介绍了一下attention .   https://distill.pub/2016/augmented-rnns/ 
+- [x] 这篇博客也很棒  https://blog.heuritech.com/2016/01/20/attention-mechanism/
 - [x] 介绍了LSTM http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
 # 小目标
