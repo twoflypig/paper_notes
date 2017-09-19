@@ -87,7 +87,7 @@ You can randomly select the output of model or the actual data values as input.
 
 ## 10.2.2 Computing the Gradient in a Recurrent Neural Network
 
-# CS241:note3
+# CS224:note3
 
 ## 1.4 Maximum Margin Object Function
 
@@ -133,7 +133,7 @@ Faster convergence is not guaranteed with larger learning rate.In fact ,with ver
 
 AdaGrad is an implementation of standard stochastic gradient descent (SGD) with one key difference: the learning rate can vary for each parameter. **Parameters that have not been updated much in the past are likelier to have higher learning rates**
 
-# CS241:note4
+# CS224:note4
 
 ## 1 Language Models
 
@@ -204,14 +204,50 @@ $$
 
 ### 2.3 Deep Bidirectional RNNs
 
-
+pass
 
 ### 2.4 Application:RNN translation Model
 
+discuss some tips:
+
+- use multiple layers
+- use bi-directional
+- reverse the input order
+
 ## 3 Gated Recurrent Units
 
+Gated recurrent units are designed in a manner to **have more persistent memory** thereby making it easier for RNNs to capture long-term dependencies.
+$$
+z_t = \sigma(W^{(z)}x_{t}+U^{z}h_{t-1})   \tag {Update gate}
+$$
 
+$$
+r_t = \sigma(W^{(r)}x_{t}+U^{r}h_{t-1})   \tag {Reset gate}
+$$
 
+$$
+\hat{h_t} = tanh (r^{(t)}\odot x_{t}+Uh_{t-1} + Wx_t)   \tag {New memory}
+$$
 
+$$
+h_t =   (1 -z_t)\odot \hat{h_t}+z_t \odot h_{t-1})   \tag {Hidden  state}
+$$
 
+The above equations can be thought of a GRU's four fundamental operational stages and they have intuitive interpretations that make this model much more intellectually satisfying. 
 
+1. **New memory generation**: A new memory $\hat {h_t}$ is the consolidation of a new input word $x_t$with the past hidden state $h_{t-1}$. Anthropomorphically, this stage is the one who knows the recipe of **combining a newly observed word with the past hidden state** $h_{t-1}$to summarize this new word in light of the contextual past as the vector $\hat {h_t}$.
+2. **Reset Gate**: The reset signal $r_t$ is responsible for determining how important $h_{t-1}$ is to the summarization $\hat {h_t}$. The reset gate has the ability to completely **diminish past hidden state** if it finds that $h_{t-1}$ is irrelevant to the computation of the new memory.
+3. **Update Gate**: The update signal  $z_t$ is responsible for determining how much of  $h_{t-1}$ should be carried forward to the next state. For instance, if $z_t$ ≈ 1, then $h_{t−1}$ is almost entirely copied out to $h_t$. Conversely, if $z_t$ ≈ 0, then mostly the new memory $\hat {h_t}$ is forwarded to the next hidden state.
+4. **Hidden state**: The hidden state ht is finally generated using the **past hidden** input $h_{t-1}$ and the **new memory** generated $\hat {h}_{t-1}$ with the advice of the update gate.
+
+![9](9.png)
+
+## 4 Long-Short-Term-Memories
+
+![11](11.png)
+
+![10](10.png)
+
+![12](12.png)
+
+![13](13.png)
