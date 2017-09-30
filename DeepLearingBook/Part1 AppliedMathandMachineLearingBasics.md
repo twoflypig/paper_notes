@@ -251,3 +251,6 @@ The above equations can be thought of a GRU's four fundamental operational stage
 ![12](12.png)
 
 ![13](13.png)
+
+# Seq2Seq
+
