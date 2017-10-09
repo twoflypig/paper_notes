@@ -87,3 +87,30 @@
 
 > 这个模型在Attentive Reader模型的基础上更细了一步，即每个query token都与document 
 > tokens有关联，而不是像之前的模型将整个query考虑为整体。感觉这个过程就好像是你读query中的每个token都需要找到document中对应相关的token。这个模型更加复杂一些，但效果不见得不好，从我们做阅读理解的实际体验来说，你不可能读问题中的每一个词之后，就去读一遍原文，这样效率太低了，而且原文很长的话，记忆的效果就不会很好了。
+
+
+
+
+
+## Reading Wikipedia to Answer Open-Domain Questions
+
+####  3.2 Document Reader
+
+方法类似在 Teaching Machine to Read and Comprehend里面的**AttentiveReader** ，可以试一试
+
+##### Paragraph
+
+先把段落p中的几个词 $p_i$ 表示为序列化的特征向量 $\hat p_i$ ,然后输入到RNN中得到对应的输出 $ \boldsymbol {p_i}$ ,这个输出认为是编码了在$p_i$ 有用的信息  ，本文中使用LSTM，并且把每层的隐层输出拼接成$ \boldsymbol {p_i}$ 。  $\hat p_i$ 由下面几个部分构成：
+
+- 词嵌入
+- Exact match:就是这个词是否在问题中出现过
+- Token features: POS NER,TF
+- aligned question embedding:词与问题中的每个词的相似度
+
+##### Question encoding
+
+编码问题更简单，因为我们只在qi的单词嵌入之上再应用另一个循环神经网络，将所得到的隐藏单元组合成一个单向量,这个向量也是每个词输出的带权之和
+
+##### Prediction
+
+把词向量$ \boldsymbol {p_i}$ 和问题$ \boldsymbol {q}$作为输入，简单的训练两个独立的分类器。具体使用双线性来捕获$ \boldsymbol {p_i}$和$ \boldsymbol {q}$ 的相似性并且计算每个词作为开始和结束的概率。
