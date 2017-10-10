@@ -94,6 +94,10 @@
 
 ## Reading Wikipedia to Answer Open-Domain Questions
 
+#### 3.1 Document Retriever
+
+本文跟随传统的QA系统，使用一个非机器学习但是有效的文件检索系统来首先缩小我们的搜索空间并且关注于可能相关的几篇文章
+
 ####  3.2 Document Reader
 
 方法类似在 Teaching Machine to Read and Comprehend里面的**AttentiveReader** ，可以试一试
