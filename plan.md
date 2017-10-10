@@ -117,4 +117,14 @@
 
 ##### Prediction
 
-把词向量$ \boldsymbol {p_i}$ 和问题$ \boldsymbol {q}$作为输入，简单的训练两个独立的分类器。具体使用双线性来捕获$ \boldsymbol {p_i}$和$ \boldsymbol {q}$ 的相似性并且计算每个词作为开始和结束的概率。
+在段落级别，目标是预测词的范围，把向量{$ \boldsymbol {p_1}$ ,$ \boldsymbol {p_2}$ ....$ \boldsymbol {p_m}$} 和问题$ \boldsymbol {q}$作为输入，简单的训练两个独立的分类器。具体使用双线性来捕获$ \boldsymbol {p_i}$和$ \boldsymbol {q}$ 的相似性并且计算每个词作为开始和结束的概率。关系如下式
+$$
+P_{start}(i)   \propto  exp ( p_i W_s q)
+$$
+
+$$
+P_{end}(i)   \propto  exp ( p_i W_e q)
+$$
+
+
+
