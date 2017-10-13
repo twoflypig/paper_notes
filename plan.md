@@ -126,5 +126,39 @@ $$
 P_{end}(i)   \propto  exp ( p_i W_e q)
 $$
 
+## Character-Level Question Answering with Attention
 
+### 1 Introduction
+
+KB能够帮助单关系事实问答，但是自动的映射问题到KB查询中仍然是一个有挑战的任务，有三个主要的挑战
+
+- 同一个问题里有很多个释义(paraphrases)
+- 在训练时很多实体是没有训练到的，但是在测试时又要使用到，
+- 类似于Freebase的KB包含了百万个实体和上千个谓词，使得系统很难在规模上预测这些实体
+
+因此，本文提出一个字符级别的encoder和decoder框架
+
+首先，使用一个LSTM encoder去对问题做embed。然后，为了让模型对于未见到的实体依然强健，我们从问题，谓词和实体的字符级别的表示(character presentation )中抽取embeddings。第三，为了拓展我们的模型来处理KB中上千和上万的实体和谓词，**我们使用一个通用的交互方程(a general interaction function)，在问题embeddings和KB embedding之间，这个方程能够度量他们的语义相关性来决定输出，而不是在decoder中使用一个大的output layer来直接预测实体**。 **字符级别的建模**和**语义相关函数**使得我们成功的产生最大似然分数对于没有出现在词汇表中的KB实体，这在标准的encoder和decoder框架中是一个挑战性的问题。
+
+### 2 Related Work
+
+我们主要由下面三个研究进行所激励:
+
+- semantic-parsing   for   open domain   question   answering
+- character-level language modeling
+- encoder-decoder methods
+
+在open-domain question answering中，语义分析(把一个问题翻译成一个结构化的KB查询)是一个KB问答系统中的关键部件。之前的方法是采用高质量的针对domain-specific databases的词典，最近的方法是建立一个语义分析框架。
+
+对于大规模的KB，语义分析框架必须能够成功的在百万个实体和上千个谓词中找到对应的query。为了解决这个问题，最近的工作是对于在KB中的实体和谓词产生他们在文本描述中的embedding。然后应用一个general interaction function 来测量这些embedded KB实体对于问题的语义相关程度，然后决定最可能的KB query。
+
+这些方法使用词级别的embedding然后可能会产生OOV的问题。因此,他们经常使用一个明显的数据增强使得每个遇到的词都有充足的例子
+
+与词嵌入建模不同，虽然从前词级别的嵌入从没有在事实型问答中使用过，但它已经成功在应用在了信息检索，机器翻译，情感分析，分类和命令体识别中。而且，Chung et al(2015)正别 gated-feedback LSTMs 在关于词级别的嵌入时能够不或在语言建模中的长期依赖。
+
+介绍了encoder,decoder.
+
+我们把问答视为，**对于给定问题的KB query，与被embedded的KB 实体的解码**。整个系统都是端到端的。
+
+### 3 Model
 
