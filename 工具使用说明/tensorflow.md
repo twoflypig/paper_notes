@@ -1,0 +1,1 @@
+- tensorflow 中，每个函数默认处理的维度是 -1,即最右边的一维，例如在 tf.nn.softmax中，处理的就是 -1 。如果自己要处理的数据在 dim =0 上，就会出现 tf.nn.softmax = 0 的情况
