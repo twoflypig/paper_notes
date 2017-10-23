@@ -252,8 +252,30 @@ pi这个值表示的是对输入句子上的注意力多少。然而，因为这
 
 
 
+## R-Net
 
+### Introduction
 
+包含三个方面
+
+- 用RNN的输出分别表示文章和问题
+- 用gated matching layer来匹配问题和文章
+- 用self-matching layer来整合来自整个文章的信息
+- 基于指针网络的的答案边界预测层
+
+首先， gated attention-based recurrent network，是在attention-based recurrent networks上面再加上一个额外的门。这样做的原因是这样的，在阅读理解和问题回答中，文章中的不同的词对于一个特别的问题会有不同的重要性。通过引入门机制，我们的gated attention-based recurrent network会根据文章部分与问题的相关度给文章部分不同的重要性，这样就忽略了不相关的文章部分，强调了重要的部分。
+
+第二，self-matching mechanism能够将来自整篇文章的的evidence有效的整合来推断答案。通过gated matching layer,结果的question-aware能够有效的针对每个词编码问题信息。针对RNN不能记住太长的文章内容,并且一个问题候选并不知道在文章其他部分的线索的特点，我们提出了self-matching layer能够动态的从整篇文章中提炼出文章表达。Based on question-aware passage representation with information from the whole passage
+
+### R-Net Structure
+
+将问题和文章分别输入双向RNN，然后用gated attention-based recurrent network匹配问题和答案，获得 question-aware representation for passage. 最后，用self-matching attention整合整篇文章的信息。
+
+#### 3.1 问题和文章编码器
+
+把词转换为对应的词嵌入和字符嵌入，通过采用应用于词中的字符嵌入的双向循环神经网络（RNN）的最终隐藏状态来生成字符级嵌入。这样字符级别的embedding能够帮助处理OOV词，然后把词嵌入和字符嵌入拼接在一起，输入到双向的RNN，用的是GRU，这样就分别把问题和文章进行了编码
+
+#### 3.2 Gated attention-based recurrent networks
 
 
 
