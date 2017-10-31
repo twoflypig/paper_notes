@@ -1,4 +1,4 @@
-
+# overview
 
 **目录：** 
 
@@ -22,7 +22,7 @@
 这篇文章将重点关注词嵌入的缺陷以及最近试图解决它们的方法。如果没有额外说明，本文所讨论的都是预训练之后的词嵌入，即使用 word2vec 及其变体在大型语料库上学习到的词表征。如果没有数以百万计的训练样本可用，预训练过的词嵌入就是最高效的（因此从一个大型的无标注的语料库迁移知识是有用的）。这个结论适用于大多数 NLP 任务。对词嵌入的基础介绍，可以参阅这个系列文章： 
 
 -  [技术 | 词嵌入系列博客 Part1：基于语言建模的词嵌入模型](http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650719971&idx=2&sn=c7e0d1f6dd4e9ddce291e9bc2c85c65f&chksm=871b029db06c8b8b7557095989dd3fdb57b86a1d7923c388ca1e74255d07f08992bb0461d958&scene=21#wechat_redirect)
-- [ 技术 | 词嵌入系列博客 Part2：比较语言建模中近似 softmax 的几种方法](http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650720050&idx=2&sn=9fedc937d3128462c478ef7911e77687&chksm=871b034cb06c8a5a8db8a10f708c81025fc62084d871ac5d184bab5098cb64e939c1c23a7369&scene=21#wechat_redirect)
+-  [ 技术 | 词嵌入系列博客 Part2：比较语言建模中近似 softmax 的几种方法](http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650720050&idx=2&sn=9fedc937d3128462c478ef7911e77687&chksm=871b034cb06c8a5a8db8a10f708c81025fc62084d871ac5d184bab5098cb64e939c1c23a7369&scene=21#wechat_redirect)
 -  [技术 | 词嵌入系列博客 Part3：word2vec 的秘密配方](http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650720074&idx=2&sn=183fc6285835a48ae7c6bbcce228b063&chksm=871b0334b06c8a22b072f61d4f914210468db7df36a1c6586bd9b6bf3fc6d9f821101d5254c0&scene=21#wechat_redirect)
 
 **子词（subword）级嵌入**
@@ -146,6 +146,12 @@ Melamud et al. (2016) [46] 观察到在不同的下游任务上表现好语境�
  
 
 从将词嵌入应用于每种可能的问题到对它们获取更有原理性的、差异微妙的和实用的理解，我们这个社区正在不断进步。这篇文章的目的是强调一些我认为最吸引人的学习词嵌入上的当前趋势和未来方向。毫无疑问，我没法全面囊括许多其它同样重要和值得关注的领域。你认为词嵌入的哪个方面最为激动人心或还未被探索？
+
+
+
+# lesson One
+
+C&W model的解决方法是避免使用昂贵的softmax，而使用一个不同的目标函数，即训练网络对于给定的正确的词序列，输出一个比错误概率更高的分数，即训练分数比错误的分数更高即可
 
 # reference 
 
